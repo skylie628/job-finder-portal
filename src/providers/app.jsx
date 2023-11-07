@@ -1,3 +1,4 @@
+import { HelmetProvider } from "react-helmet-async";
 import { BrowserRouter } from "react-router-dom";
 import { Suspense } from "react";
 const ErrorFallback = () => {
@@ -19,8 +20,10 @@ const ErrorFallback = () => {
 
 export default function AppProvider({ children }) {
   return (
-    <Suspense FallbackComponent={<ErrorFallback />}>
-      <BrowserRouter>{children}</BrowserRouter>
-    </Suspense>
+    <HelmetProvider>
+      <Suspense FallbackComponent={<ErrorFallback />}>
+        <BrowserRouter>{children}</BrowserRouter>
+      </Suspense>
+    </HelmetProvider>
   );
 }
